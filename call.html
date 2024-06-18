@@ -8,15 +8,21 @@
       const urlParams = new URLSearchParams(window.location.search);
       const phoneNumber = urlParams.get('phone');
 
-      // Send analytics data using GTM (assuming GTM script is loaded)
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({
-        'event': 'phone_link_click',
-        'phone_number': phoneNumber
-      });
+      if (phoneNumber) {
+        // Send analytics data using GTM (assuming GTM script is loaded)
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          'event': 'phone_link_click',
+          'phone_number': phoneNumber
+        });
 
-      // Initiate phone call using retrieved phone number
-      window.location.href = `tel:${phoneNumber}`;
+        // Initiate phone call using retrieved phone number
+        window.location.href = `tel:${phoneNumber}`;
+      } else {
+        // Handle case where phone number parameter is missing
+        console.error("Missing phone number parameter in URL");
+        // Optionally display an error message or redirect to another page
+      }
     }
   </script>
 </head>
