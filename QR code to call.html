@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>QR Code Phone Call</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script>
+    // Generate QR code
+    function generateQRCode() {
+      const phoneLink = document.querySelector('.leshen-link');
+      if (phoneLink && phoneLink.href.startsWith('tel:')) {
+        const phoneNumber = phoneLink.href.slice(4); // Remove "tel:" part
+        const qrCodeUrl = `${window.location.origin}/call?phone=${phoneNumber}`;
+
+        const qrcode = new QRCode(document.getElementById('qrcode'), {
+          text: qrCodeUrl,
+          width: 256,
+          height: 256
+        });
+
+        // Create a paragraph element to display phone number
+        const phoneDisplay = document.createElement('p');
+        phoneDisplay.textContent = `Call: ${phoneNumber}`;
+        document.body.appendChild(phoneDisplay);
+      } else {
+        // Handle case where .leshen-link doesn't exist or doesn't have a tel: link
+        console.error("Couldn't find valid phone number in .leshen-link");
+      }
+    }
+
+    window.onload = function() {
+      generateQRCode();
+    }
+  </script>
+</head>
+<body>
+  <div id="qrcode"></div>
+  <a class="leshen-link leshen-link-button-wrapper css-uqhk94-LinkButton e9y95tf0" href="tel:1-833-861-0644">
+    </a>
+</body>
+</html>

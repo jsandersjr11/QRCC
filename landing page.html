@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Landing Page</title>
+  <script>
+    function handleCall() {
+      // Get phone number from URL parameter
+      const urlParams = new URLSearchParams(window.location.search);
+      const phoneNumber = urlParams.get('phone');
+
+      // Send analytics data using GTM (assuming GTM script is loaded)
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        'event': 'phone_link_click',
+        'phone_number': phoneNumber
+      });
+
+      // Initiate phone call using retrieved phone number
+      window.location.href = `tel:${phoneNumber}`;
+    }
+  </script>
+</head>
+<body>
+  <script>handleCall();</script> </body>
+</html>
