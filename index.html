@@ -9,7 +9,7 @@
       const phoneLink = document.querySelector('.leshen-link');
       if (phoneLink && phoneLink.href.startsWith('tel:')) {
         const phoneNumber = phoneLink.href.slice(4); // Remove "tel:" part
-        const qrCodeUrl = `${window.location.origin}/call?phone=${phoneNumber}`;
+        const qrCodeUrl = `${window.location.origin}/QRCC/call?phone=${phoneNumber}`; // temp /QRCC/ added for demo purposes
 
         const qrcode = new QRCode(document.getElementById('qrcode'), {
           text: qrCodeUrl,
